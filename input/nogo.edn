@@ -1,51 +1,39 @@
-{
-  :title "Domson.dev"
-  :url "https://domson.dev"
-  :feedid "https://domson.dev/"
-  :authorname "Domson"
-  :feedsdir "feeds"
-  :folders {
-    :index {
-      :name "Index"
-      :infolder "index"
-      :outfolder ""
-      :template "base.html"
-      :header "header.html"
-      :footer "footer.html"
-      :style "style.css"
-      :pages [
-        {
-          :title "Domson.dev"
-          :date "2023-07-30"
-          :file "index.html"
-          :summary "Homepage"
-        }
-      ]
-    }
-    :projects {
-      :name "Projects"
-      :infolder "projects"
-      :outfolder "projects"
-      :template "base.html"
-      :header "header.html"
-      :footer "footer.html"
-      :style "style.css"
-      :pages [
-        {
-          :title "Light Weather"
-          :date "2023-07-31"
-          :file "lightweather.html"
-          :summary 
-          "Building an air-quality sensor and I/O board with ESP32-C3 and MQTT"
-        }
-        {
-          :title "E-Paper"
-          :date "2023-09-02"
-          :file "epaper.html"
-          :summary 
-          "Building an e-paper clock that shows weather with a Pi Zero"
-        }
-      ]
-    }
-  }
-}
+{:title "Domson.dev"
+ :url "https://domson.dev"
+ :feedid "https://domson.dev/"
+ :authorname "Domson"
+ :feedsdir "feeds"
+ :folders {:index {:name "Index"
+                   :infolder "index"
+                   :outfolder ""
+                   :template "base.html"
+                   :header "header.html"
+                   :footer "footer.html"
+                   :style "style.css"
+                   :pages [{:title "Domson.dev"
+                            :date "2023-07-30"
+                            :file "index.html"
+                            :summary "Homepage"}]}
+
+           :projects {:name "Projects"
+                      :infolder "projects"
+                      :outfolder "projects"
+                      :template "base.html"
+                      :header "header.html"
+                      :footer "footer.html"
+                      :style "style.css"
+                      :pages [{:title "Light Weather"
+                               :date "2023-07-31"
+                               :file "lightweather.html"
+                               :summary
+                               "Building an air-quality sensor and I/O board with ESP32-C3 and MQTT"}
+                              {:title "E-Paper"
+                               :date "2023-09-02"
+                               :file "epaper.html"
+                               :summary
+                               "Building an e-paper clock that shows weather with a Pi Zero"}
+                              {:title "Desk Shelf"
+                               :date "2024-01-14"
+                               :file "shelf.html"
+                               :summary
+                               "Making a custom shelf for my desk, and starting woodworking"}]}}}
