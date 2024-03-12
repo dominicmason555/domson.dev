@@ -2,7 +2,7 @@
  :url "https://domson.dev"
  :feedid "https://domson.dev/"
  :authorname "Domson"
- :feedsdir "feeds"
+ :feedsdir ""
  :folders {:index {:name "Index"
                    :infolder "index"
                    :outfolder ""
