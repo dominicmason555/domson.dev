@@ -1,129 +1,125 @@
 <article>
 
-    <h2>Project: Making an E-Paper Clock</h2>
+  <h2>Project: Making an E-Paper Clock</h2>
 
-    <p> I made a clock for my flat out of an E-Paper display and a Raspberry Pi
-        Zero W.</p>
+  <p> I made a clock for my flat out of an E-Paper display and a Raspberry Pi
+    Zero W.</p>
 
-    <p> It displays the time, accurate to within 5 minutes, for example:
-        "twenty-five to nine", and it also shows recent values of some
-        environmental sensors around my flat.</p>
+  <p> It displays the time, accurate to within 5 minutes, for example:
+    "twenty-five to nine", and it also shows recent values of some
+    environmental sensors around my flat.</p>
 
-    <figure>
-        <picture>
-            <source srcset="/images/twentyfivetonine.avif"/>
-            <img src="/images/twentyfivetonine.png"
-                class="halfwidth"
-                alt="An image generated for the display, showing the time and sensor readings"
-                width="480"
-                height="280"/>
-        </picture>
-        <figcaption>
-            An image generated for the display, showing the time and sensor readings
-        </figcaption>
-    </figure>
+  <figure>
+    <picture>
+      <source srcset="/images/twentyfivetonine.avif" />
+      <img src="/images/twentyfivetonine.png" class="halfwidth"
+        alt="An image generated for the display, showing the time and sensor readings" width="480" height="280" />
+    </picture>
+    <figcaption>
+      An image generated for the display, showing the time and sensor readings
+    </figcaption>
+  </figure>
 
-    <h3>Why would you do that?</h3>
+  <h3>Why would you do that?</h3>
 
-    <p> I think it looks pretty cool, and it can be read from a good distance
-        thanks to the font size and how crisp e-paper is. I like how the
-        imprecise but accurate time makes you think about the time also, as in
-        most cases knowing it down to the minute, or down to the second, isn't
-        really necessary.</p>
+  <p> I think it looks pretty cool, and it can be read from a good distance
+    thanks to the font size and how crisp e-paper is. I like how the
+    imprecise but accurate time makes you think about the time also, as in
+    most cases knowing it down to the minute, or down to the second, isn't
+    really necessary.</p>
 
-    <p> There are also the usual reasons, making something for myself is
-        satisfying, and having complete control over how it works means that it
-        can integrate well with the other things I've made, like my weather
-        sensors. </p>
+  <p> There are also the usual reasons, making something for myself is
+    satisfying, and having complete control over how it works means that it
+    can integrate well with the other things I've made, like my weather
+    sensors. </p>
 
-    <h3>The Hardware Design</h3>
+  <h3>The Hardware Design</h3>
 
-    <p> This project was made out of things I had lying around that I'd bought
-        a while ago to try out without a particular use in mind. This explains
-        why I used an entire Raspberry Pi to tell the time, the e-paper display
-        I had was designed to connect to the Pi's GPIO header. The project
-        could probably have been done with the resources of any recent high-end
-        microcontroller with WiFi support, like an ESP32, but the Pi was too
-        convienient not to use. </p>
+  <p> This project was made out of things I had lying around that I'd bought
+    a while ago to try out without a particular use in mind. This explains
+    why I used an entire Raspberry Pi to tell the time, the e-paper display
+    I had was designed to connect to the Pi's
+    <attr title="General-Purpose Input/Output">GPIO</attr> header. The project
+    could probably have been done with the resources of any recent high-end
+    microcontroller with WiFi support, like an ESP32, but the Pi was too
+    convienient not to use.
+  </p>
 
-    <p> So the hardware design consisted of me plugging the Pi Zero W into the
-        4.2" Waveshare e-paper display hat, through its GPIO header. </p>
+  <p> So the hardware design consisted of me plugging the Pi Zero W into the
+    4.2" Waveshare e-paper display hat, through its GPIO header. </p>
 
-    <h3>The Software Design</h3>
+  <h3>The Software Design</h3>
 
-    <p> Since development on the Pi zero can be annoying due to its low
-        processing power leading to slow responses to commands, I decided to
-        keep the Pi zero as a thin client that just displays an image when it's
-        been told to. Then since I already have a speedy Pi 4 running a Python
-        webserver with <a class="plain"
-                          href="https://fastapi.tiangolo.com/">FastAPI</a>, I
-        could add the functionality for drawing the clock face image to that,
-        and enjoy quickly trying out changes to the code on the Pi 4, which I'm
-        already SSH-ing into and making changes on often enough. When making
-        large changes, since the server is deployed in a docker container, I
-        tend to make the changes on my PC and then send the changes to the Pi
-        when it's finished.</p>
+  <p> Since development on the Pi zero can be annoying due to its low
+    processing power leading to slow responses to commands, I decided to
+    keep the Pi zero as a thin client that just displays an image when it's
+    been told to. Then since I already have a speedy Pi 4 running a Python
+    webserver with <a class="plain" href="https://fastapi.tiangolo.com/">FastAPI</a>, I
+    could add the functionality for drawing the clock face image to that,
+    and enjoy quickly trying out changes to the code on the Pi 4, which I'm
+    already SSH-ing into and making changes on often enough. When making
+    large changes, since the server is deployed in a docker container, I
+    tend to make the changes on my PC and then send the changes to the Pi
+    when it's finished.</p>
 
-    <p> Since I had an entire Pi dedicated to telling the time, there wasn't
-        really any reason to be efficient with the software. The Pi zero runs a
-        Python script that listens for MQTT messages from the Pi 4, and when it
-        gets one telling it to update the display, it downloads the bitmap over
-        HTTP from a known URL served by the Pi 4. It's maybe 75 lines or so of
-        Python, and it hasn't needed changing in the year or so it's been
-        running so far, just set and forget.</p>
+  <p> Since I had an entire Pi dedicated to telling the time, there wasn't
+    really any reason to be efficient with the software. The Pi zero runs a
+    Python script that listens for MQTT messages from the Pi 4, and when it
+    gets one telling it to update the display, it downloads the bitmap over
+    HTTP from a known URL served by the Pi 4. It's maybe 75 lines or so of
+    Python, and it hasn't needed changing in the year or so it's been
+    running so far, just set and forget.</p>
 
-    <p> While that code itself stayed unchanged, I did find once or twice that
-        it had stopped running for reasons unknown. Rather than figure out why,
-        I just installed <a class="plain"
-                            href="http://supervisord.org">Supervisor</a> and
-        wrote it a configuration file to ensure the program gets restarted if
-        it ever dies. Since then I've not noticed it stop working once. This
-        was a lazy approach, but the clock is designed for a target audience of
-        just me, and I've got plenty of things that are noticeably broken to
-        fix, before I start fixing the things that aren't.</p>
+  <p> While that code itself stayed unchanged, I did find once or twice that
+    it had stopped running for reasons unknown. Rather than figure out why,
+    I just installed <a class="plain" href="http://supervisord.org">Supervisor</a> and
+    wrote it a configuration file to ensure the program gets restarted if
+    it ever dies. Since then I've not noticed it stop working once. This
+    was a lazy approach, but the clock is designed for a target audience of
+    just me, and I've got plenty of things that are noticeably broken to
+    fix, before I start fixing the things that aren't.</p>
 
-    <p> With the Pi zero acting as a thin client, all the server had to do was
-        draw the time and some sensor readings onto a bitmap every now and
-        again, and send it. The sensor readings are from a
-        <a class="plain" href="https://www.timescale.com/">TimescaleDB</a>
-        database, which is an extension for Postgres that gives it compression
-        for time-series data. The data was dutifully collected by my
-        <a class="plain"
-           href="https://github.com/dominicmason555/mqtt_to_timescale">Python script</a>
-        from sensors around my flat over MQTT and piped into the
-        database. The server runs a query to get the median value of each
-        measurement over the past hour.
-    </p>
+  <p> With the Pi zero acting as a thin client, all the server had to do was
+    draw the time and some sensor readings onto a bitmap every now and
+    again, and send it. The sensor readings are from a
+    <a class="plain" href="https://www.timescale.com/">TimescaleDB</a>
+    database, which is an extension for Postgres that gives it compression
+    for time-series data. The data was dutifully collected by my
+    <a class="plain" href="https://github.com/dominicmason555/mqtt_to_timescale">Python script</a>
+    from sensors around my flat over MQTT and piped into the
+    database. The server runs a query to get the median value of each
+    measurement over the past hour.
+  </p>
 
-    <p>
-        The time was generated in its fuzzy text format once every minute, and
-        the image was updated if the time was different to the time of the last
-        minute, so the display updated every five minutes. This is well suited
-        to the nature of e-paper, since this display takes around 5 seconds to
-        fully update. For a while, the time was stuck to UTC and wouldn't
-        change for summer time, despite my Pi's system time updating.
-        Eventually I figured out that the docker container has its own time zone,
-        so once I'd set that, the clock went back and forth each year on its
-        own.
-    </p>
+  <p>
+    The time was generated in its fuzzy text format once every minute, and
+    the image was updated if the time was different to the time of the last
+    minute, so the display updated every five minutes. This is well suited
+    to the nature of e-paper, since this display takes around 5 seconds to
+    fully update. For a while, the time was stuck to UTC and wouldn't
+    change for summer time, despite my Pi's system time updating.
+    Eventually I figured out that the docker container has its own time zone,
+    so once I'd set that, the clock went back and forth each year on its
+    own.
+  </p>
 
-    <p> Once all that was sorted, the system has been left running for a year
-        and it seems to have kept running smoothly the whole time. </p>
+  <p> Once all that was sorted, the system has been left running for a year
+    and it seems to have kept running smoothly the whole time. </p>
 
-    <h3> What Next? </h3>
+  <h3> What Next? </h3>
 
-    <p> There's no room left on the display to add extra info, so I'm currently
-        looking at a larger display and a nice wooden picture frame to put it
-        in. This could show the same info as the current clock, but with plenty
-        of area for anything else underneath. It would be nice to have the
-        power consumption measured by the smart sockets in my flat, and maybe
-        my <a class="plain" href="http://todotxt.org">todo.txt</a> file displayed
-        as well to make it harder to forget/ignore. </p>
+  <p> There's no room left on the display to add extra info, so I'm currently
+    looking at a larger display and a nice wooden picture frame to put it
+    in. This could show the same info as the current clock, but with plenty
+    of area for anything else underneath. It would be nice to have the
+    power consumption measured by the smart sockets in my flat, and maybe
+    my <a class="plain" href="http://todotxt.org">todo.txt</a> file displayed
+    as well to make it harder to forget/ignore. </p>
 
-    <p> As for the current e-paper clock, I'm quite happy with how usable, nice
-        to look at, and reliable the project turned out to be, considering how
-        it was mostly made in an afternoon if you don't count the bug-fixes.
-        I'd recommend having a go to anyone with a spare ~£40 and a spare
-        afternoon. </p>
+  <p> As for the current e-paper clock, I'm quite happy with how usable, nice
+    to look at, and reliable the project turned out to be, considering how
+    it was mostly made in an afternoon if you don't count the bug-fixes.
+    I'd recommend having a go to anyone with a spare ~£40 and a spare
+    afternoon. </p>
 
 </article>
