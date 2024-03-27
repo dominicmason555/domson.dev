@@ -57,18 +57,25 @@
     webserver with <a class="plain" href="https://fastapi.tiangolo.com/">FastAPI</a>, I
     could add the functionality for drawing the clock face image to that,
     and enjoy quickly trying out changes to the code on the Pi 4, which I'm
-    already SSH-ing into and making changes on often enough. When making
+    already <abbr title="Secure Shell">SSH</abbr>-ing into and making changes
+    on often enough. When making
     large changes, since the server is deployed in a docker container, I
     tend to make the changes on my PC and then send the changes to the Pi
     when it's finished.</p>
 
   <p> Since I had an entire Pi dedicated to telling the time, there wasn't
     really any reason to be efficient with the software. The Pi zero runs a
-    Python script that listens for MQTT messages from the Pi 4, and when it
+    Python script that listens for
+    <abbr title="Message Queuing Telemetry Transport">MQTT</abbr>
+    messages from the Pi 4, and when it
     gets one telling it to update the display, it downloads the bitmap over
-    HTTP from a known URL served by the Pi 4. It's maybe 75 lines or so of
+    <abbr title="Hyper-Text Transfer Protocol">HTTP</abbr>
+    from a known
+    <abbr title="Uniform Resource Locator">URL</abbr> served by the Pi 4. It's
+    maybe 75 lines or so of
     Python, and it hasn't needed changing in the year or so it's been
-    running so far, just set and forget.</p>
+    running so far, just set and forget.
+  </p>
 
   <p> While that code itself stayed unchanged, I did find once or twice that
     it had stopped running for reasons unknown. Rather than figure out why,
@@ -96,7 +103,8 @@
     the image was updated if the time was different to the time of the last
     minute, so the display updated every five minutes. This is well suited
     to the nature of e-paper, since this display takes around 5 seconds to
-    fully update. For a while, the time was stuck to UTC and wouldn't
+    fully update. For a while, the time was stuck to
+    <abbr title="Coordinated Universal Time">UTC</abbr> and wouldn't
     change for summer time, despite my Pi's system time updating.
     Eventually I figured out that the docker container has its own time zone,
     so once I'd set that, the clock went back and forth each year on its
