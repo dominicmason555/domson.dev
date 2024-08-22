@@ -24,7 +24,6 @@ article {
 .header p {
     font-size: 1.2em;
     margin-bottom: 2em;
-    text-decoration: underline wavy #808080;
     font-style: italic;
     color: inherit;
 }
@@ -105,6 +104,16 @@ h1 {
     height: auto;
 }
 
-li + li {
-  margin-top: 0.5em;
+ul + p {
+    margin-top: 1.5em;
+}
+
+li {
+  margin-bottom: 1em;
+}
+
+li p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 2em;
 }

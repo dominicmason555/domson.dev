@@ -5,7 +5,7 @@
   <title>Domson.dev</title>
   <link rel="alternate" href="https://domson.dev"/>
   <link rel="self" href="https://domson.dev//atom.xml"/>
-  <updated>2024-08-21T20:35:40.870Z</updated>
+  <updated>2024-08-22T20:34:39.692Z</updated>
   <author>
     <name>Domson</name>
   </author>
@@ -23,21 +23,21 @@
     <link href="https://domson.dev/projects/lightweather.html"/>
     <id>https://domson.dev/projects/lightweather.html</id>
     <updated>2023-07-31T00:00:00Z</updated>
-    <summary>Building an air-quality sensor and I/O board with ESP32-C3 and MQTT</summary>
+    <summary>Building an air-quality sensor and I/O PCB with an ESP32-C3 and MQTT</summary>
   </entry>
   <entry>
     <title>E-Paper</title>
     <link href="https://domson.dev/projects/epaper.html"/>
     <id>https://domson.dev/projects/epaper.html</id>
     <updated>2023-09-02T00:00:00Z</updated>
-    <summary>Building an e-paper clock that shows weather with a Pi Zero</summary>
+    <summary>Building a simple e-paper clock that also shows the weather, with a Pi Zero</summary>
   </entry>
   <entry>
     <title>Desk Shelf</title>
     <link href="https://domson.dev/projects/shelf.html"/>
     <id>https://domson.dev/projects/shelf.html</id>
     <updated>2024-01-14T00:00:00Z</updated>
-    <summary>Making a custom shelf for my desk, and starting woodworking</summary>
+    <summary>Making a custom shelf for my desk, getting started with woodworking and CAD</summary>
   </entry>
 
 </feed>
