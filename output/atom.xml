@@ -4,8 +4,8 @@
 
   <title>Domson.dev</title>
   <link rel="alternate" href="https://domson.dev"/>
-  <link rel="self" href="https://domson.dev//atom.xml"/>
-  <updated>2024-08-22T20:34:39.692Z</updated>
+  <link rel="self" href="https://domson.dev/atom.xml"/>
+  <updated>2024-08-26T16:54:05.056Z</updated>
   <author>
     <name>Domson</name>
   </author>
@@ -16,7 +16,7 @@
     <link href="https://domson.dev/index.html"/>
     <id>https://domson.dev/index.html</id>
     <updated>2023-07-30T00:00:00Z</updated>
-    <summary>Homepage</summary>
+    <summary>Homepage of the personal website of Domson</summary>
   </entry>
   <entry>
     <title>Light Weather</title>

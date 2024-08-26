@@ -13,7 +13,7 @@
                    :pages [{:title "Domson.dev"
                             :date "2023-07-30"
                             :file "index.html"
-                            :summary "Homepage"}]}
+                            :summary "Homepage of the personal website of Domson"}]}
 
            :projects {:name "Projects"
                       :infolder "projects"
