@@ -1,8 +1,8 @@
 body {
     font-family: sans-serif;
     font-size: 1rem;
-    background-color: #1c1b22;
-    color: #dddddd;
+    background-color: #29264d;
+    color: #dfded9;
 }
 
 article {
@@ -24,13 +24,11 @@ article {
 .header p {
     font-size: 1.2em;
     margin-bottom: 2em;
-    text-decoration: underline wavy #808080;
     font-style: italic;
     color: inherit;
 }
 
 .header a {
-    text-decoration: underline wavy #808080;
     color: inherit;
 }
 
@@ -103,4 +101,8 @@ h1 {
     margin-right: auto;
     width: 55%;
     height: auto;
+}
+
+li::marker {
+    content: "→   ";
 }

@@ -19,8 +19,8 @@
     body {
     font-family: sans-serif;
     font-size: 1rem;
-    background-color: #1c1b22;
-    color: #dddddd;
+    background-color: #29264d;
+    color: #dfded9;
 }
 
 article {
@@ -42,13 +42,11 @@ article {
 .header p {
     font-size: 1.2em;
     margin-bottom: 2em;
-    text-decoration: underline wavy #808080;
     font-style: italic;
     color: inherit;
 }
 
 .header a {
-    text-decoration: underline wavy #808080;
     color: inherit;
 }
 
@@ -123,6 +121,10 @@ h1 {
     height: auto;
 }
 
+li::marker {
+    content: "→   ";
+}
+
     </style>
 
 </head>
@@ -131,7 +133,7 @@ h1 {
 
     <div class="header">
     <h1><span class="title"><a href="/">⌨️ domson.dev</a></span></h1>
-<p><a href="/">Domson's Webbed Site</a></p>
+<p class="p-summary">Domson's Webbed Site</p>
 <hr>
 
     </div>
