@@ -22,10 +22,14 @@ article {
 }
 
 .header p {
-    font-size: 1.2em;
-    margin-bottom: 2em;
+    font-size: 1em;
+    /* margin-bottom: 1em; */
     font-style: italic;
     color: inherit;
+}
+
+.header hr {
+    margin-top: 0em;
 }
 
 .header a {
